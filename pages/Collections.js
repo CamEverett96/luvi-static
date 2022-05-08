@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import MainLayout from "../components/layout/MainLayout";
-import Hero1 from '../components/Hero/Hero1/Hero1'
 import Collections from '../components/Collections/collections-page/Collections'
 
 export default function Home() {
@@ -26,7 +25,7 @@ export default function Home() {
           href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap"
         />
       </Head>
-      <Hero1/>
+      <Collections/>
     </MainLayout>
   );
 }
