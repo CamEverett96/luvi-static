@@ -5,7 +5,7 @@ import Hero1 from '../components/Hero/Hero1/Hero1'
 import Collections from '../components/Collections/collections-page/Collections'
 
 export default function Home() {
-  return (
+  return (<div className="layout">
     <MainLayout>
       <Head>
         <title>Create Next App</title>
@@ -28,5 +28,6 @@ export default function Home() {
       </Head>
       <Hero1/>
     </MainLayout>
+    </div>
   );
 }
