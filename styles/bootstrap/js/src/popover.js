@@ -17,7 +17,7 @@ import Tooltip from './tooltip'
 const NAME = 'popover'
 const DATA_KEY = 'bs.popover'
 const EVENT_KEY = `.${DATA_KEY}`
-const CLASS_PREFIX = 'bs-popover'
+const className_PREFIX = 'bs-popover'
 
 const Default = {
   ...Tooltip.Default,
@@ -25,10 +25,10 @@ const Default = {
   offset: [0, 8],
   trigger: 'click',
   content: '',
-  template: '<div class="popover" role="tooltip">' +
-              '<div class="popover-arrow"></div>' +
-              '<h3 class="popover-header"></h3>' +
-              '<div class="popover-body"></div>' +
+  template: '<div className="popover" role="tooltip">' +
+              '<div className="popover-arrow"></div>' +
+              '<h3 className="popover-header"></h3>' +
+              '<div className="popover-body"></div>' +
             '</div>'
 }
 
@@ -55,11 +55,11 @@ const SELECTOR_CONTENT = '.popover-body'
 
 /**
  * ------------------------------------------------------------------------
- * Class Definition
+ * className Definition
  * ------------------------------------------------------------------------
  */
 
-class Popover extends Tooltip {
+className Popover extends Tooltip {
   // Getters
 
   static get Default() {
@@ -95,8 +95,8 @@ class Popover extends Tooltip {
     return this._resolvePossibleFunction(this._config.content)
   }
 
-  _getBasicClassPrefix() {
-    return CLASS_PREFIX
+  _getBasicclassNamePrefix() {
+    return className_PREFIX
   }
 
   // Static

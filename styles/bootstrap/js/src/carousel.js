@@ -78,14 +78,14 @@ const EVENT_DRAG_START = `dragstart${EVENT_KEY}`
 const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`
 const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_CAROUSEL = 'carousel'
-const CLASS_NAME_ACTIVE = 'active'
-const CLASS_NAME_SLIDE = 'slide'
-const CLASS_NAME_END = 'carousel-item-end'
-const CLASS_NAME_START = 'carousel-item-start'
-const CLASS_NAME_NEXT = 'carousel-item-next'
-const CLASS_NAME_PREV = 'carousel-item-prev'
-const CLASS_NAME_POINTER_EVENT = 'pointer-event'
+const className_NAME_CAROUSEL = 'carousel'
+const className_NAME_ACTIVE = 'active'
+const className_NAME_SLIDE = 'slide'
+const className_NAME_END = 'carousel-item-end'
+const className_NAME_START = 'carousel-item-start'
+const className_NAME_NEXT = 'carousel-item-next'
+const className_NAME_PREV = 'carousel-item-prev'
+const className_NAME_POINTER_EVENT = 'pointer-event'
 
 const SELECTOR_ACTIVE = '.active'
 const SELECTOR_ACTIVE_ITEM = '.active.carousel-item'
@@ -102,10 +102,10 @@ const POINTER_TYPE_PEN = 'pen'
 
 /**
  * ------------------------------------------------------------------------
- * Class Definition
+ * className Definition
  * ------------------------------------------------------------------------
  */
-class Carousel extends BaseComponent {
+className Carousel extends BaseComponent {
   constructor(element, config) {
     super(element)
 
@@ -312,7 +312,7 @@ class Carousel extends BaseComponent {
       EventHandler.on(this._element, EVENT_POINTERDOWN, event => start(event))
       EventHandler.on(this._element, EVENT_POINTERUP, event => end(event))
 
-      this._element.classList.add(CLASS_NAME_POINTER_EVENT)
+      this._element.classNameList.add(className_NAME_POINTER_EVENT)
     } else {
       EventHandler.on(this._element, EVENT_TOUCHSTART, event => start(event))
       EventHandler.on(this._element, EVENT_TOUCHMOVE, event => move(event))
@@ -361,14 +361,14 @@ class Carousel extends BaseComponent {
     if (this._indicatorsElement) {
       const activeIndicator = SelectorEngine.findOne(SELECTOR_ACTIVE, this._indicatorsElement)
 
-      activeIndicator.classList.remove(CLASS_NAME_ACTIVE)
+      activeIndicator.classNameList.remove(className_NAME_ACTIVE)
       activeIndicator.removeAttribute('aria-current')
 
       const indicators = SelectorEngine.find(SELECTOR_INDICATOR, this._indicatorsElement)
 
       for (let i = 0; i < indicators.length; i++) {
         if (Number.parseInt(indicators[i].getAttribute('data-bs-slide-to'), 10) === this._getItemIndex(element)) {
-          indicators[i].classList.add(CLASS_NAME_ACTIVE)
+          indicators[i].classNameList.add(className_NAME_ACTIVE)
           indicators[i].setAttribute('aria-current', 'true')
           break
         }
@@ -403,11 +403,11 @@ class Carousel extends BaseComponent {
     const isCycling = Boolean(this._interval)
 
     const isNext = order === ORDER_NEXT
-    const directionalClassName = isNext ? CLASS_NAME_START : CLASS_NAME_END
-    const orderClassName = isNext ? CLASS_NAME_NEXT : CLASS_NAME_PREV
+    const directionalclassName = isNext ? className_NAME_START : className_NAME_END
+    const orderclassName = isNext ? className_NAME_NEXT : className_NAME_PREV
     const eventDirectionName = this._orderToDirection(order)
 
-    if (nextElement && nextElement.classList.contains(CLASS_NAME_ACTIVE)) {
+    if (nextElement && nextElement.classNameList.contains(className_NAME_ACTIVE)) {
       this._isSliding = false
       return
     }
@@ -444,19 +444,19 @@ class Carousel extends BaseComponent {
       })
     }
 
-    if (this._element.classList.contains(CLASS_NAME_SLIDE)) {
-      nextElement.classList.add(orderClassName)
+    if (this._element.classNameList.contains(className_NAME_SLIDE)) {
+      nextElement.classNameList.add(orderclassName)
 
       reflow(nextElement)
 
-      activeElement.classList.add(directionalClassName)
-      nextElement.classList.add(directionalClassName)
+      activeElement.classNameList.add(directionalclassName)
+      nextElement.classNameList.add(directionalclassName)
 
       const completeCallBack = () => {
-        nextElement.classList.remove(directionalClassName, orderClassName)
-        nextElement.classList.add(CLASS_NAME_ACTIVE)
+        nextElement.classNameList.remove(directionalclassName, orderclassName)
+        nextElement.classNameList.add(className_NAME_ACTIVE)
 
-        activeElement.classList.remove(CLASS_NAME_ACTIVE, orderClassName, directionalClassName)
+        activeElement.classNameList.remove(className_NAME_ACTIVE, orderclassName, directionalclassName)
 
         this._isSliding = false
 
@@ -465,8 +465,8 @@ class Carousel extends BaseComponent {
 
       this._queueCallback(completeCallBack, activeElement, true)
     } else {
-      activeElement.classList.remove(CLASS_NAME_ACTIVE)
-      nextElement.classList.add(CLASS_NAME_ACTIVE)
+      activeElement.classNameList.remove(className_NAME_ACTIVE)
+      nextElement.classNameList.add(className_NAME_ACTIVE)
 
       this._isSliding = false
       triggerSlidEvent()
@@ -539,7 +539,7 @@ class Carousel extends BaseComponent {
   static dataApiClickHandler(event) {
     const target = getElementFromSelector(this)
 
-    if (!target || !target.classList.contains(CLASS_NAME_CAROUSEL)) {
+    if (!target || !target.classNameList.contains(className_NAME_CAROUSEL)) {
       return
     }
 

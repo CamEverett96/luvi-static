@@ -32,97 +32,97 @@ return(
     </div>
      <div className="top-nav__groupb">
             <a href="#" className="top-nav__groupb-icon">
-                <i class="fa-solid fa-map-location"></i>
+                <i className="fa-solid fa-map-location"></i>
             </a>
             <a href="#" className="top-nav__groupb-icon">
-                <i class="fa-solid fa-heart"></i>
+                <i className="fa-solid fa-heart"></i>
             </a>
              <a href="#" className="top-nav__groupb-icon">
-                <i class="fa-solid fa-user"></i>
+                <i className="fa-solid fa-user"></i>
              </a>
              <a href="#" className="top-nav__groupb-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-cart-shopping"></i>
             </a>
         </div>
     </div>
     </section>
-    <section class="top-menu">
-        <div class="container">
-          <div class="top-menu__groupa">
-            <div href="#"class="mbs">
-                <i class="fa-solid fa-magnifying-glass"></i>
+    <section className="top-menu">
+        <div className="container">
+          <div className="top-menu__groupa">
+            <div href="#"className="mbs">
+                <i className="fa-solid fa-magnifying-glass"></i>
 
             </div>
-            <div class="mobile-menu">
-                <i class="fa-solid fa-bars"></i>
+            <div className="mobile-menu">
+                <i className="fa-solid fa-bars"></i>
             </div>
-            <div class="top-menu__groupa-logo">
+            <div className="top-menu__groupa-logo">
                 Louis Vuitton
             </div>
             
-            <div class="top-menu__groupa-links">
-                <a class="top-menu__groupa-link">
+            <div className="top-menu__groupa-links">
+                <a className="top-menu__groupa-link">
                  New
                 </a>
-                <a class="top-menu__groupa-link">
+                <a className="top-menu__groupa-link">
                 Women
                 </a>
-                <a class="top-menu__groupa-link">
+                <a className="top-menu__groupa-link">
                 Men
                 </a>
-                <a class="top-menu__groupa-link">
+                <a className="top-menu__groupa-link">
                 Art of Living
                 </a>
-                <a class="top-menu__groupa-link">
+                <a className="top-menu__groupa-link">
                 Magazine
                 </a>
-                <a class="top-menu__groupa-link">
+                <a className="top-menu__groupa-link">
                 Holiday
                 </a>
             </div>
           </div>
           
-          <div class="top-menu__groupb">
-            <div href="#" class="top-menu__groupbinput">
-                <div class="top-menu__groupb-search">
-                    <i class="fa-solid fa-magnifying-glass"></i>    
+          <div className="top-menu__groupb">
+            <div href="#" className="top-menu__groupbinput">
+                <div className="top-menu__groupb-search">
+                    <i className="fa-solid fa-magnifying-glass"></i>    
                     <input type="text" placeholder="Search.."/>
                 </div>
             </div>
-            <div href="#" class="mbc">
-                <i class="fa-solid fa-cart-arrow-down"></i>
+            <div href="#" className="mbc">
+                <i className="fa-solid fa-cart-arrow-down"></i>
             </div>
         </div>
         </div>
     </section>
 
-    <section class="mega-menu ">
-            <div class="mega-menu__child">
-                <a href="#" class="mega-menu__child-link">Gifts</a>
-                <a href="#" class="mega-menu__child-link">Highlights</a>
-                <a href="#" class="mega-menu__child-link">Handbags</a>
-                <a href="#" class="mega-menu__child-link">Small Leather Goods</a>
-                <a href="#" class="mega-menu__child-link">Frangrances</a>
-                <a href="#" class="mega-menu__child-link">Accesscories</a>
-                <a href="#" class="mega-menu__child-link">Jewlwry</a>
-                <a href="#" class="mega-menu__child-link">Ready-to-wear</a>
-                <a href="#" class="mega-menu__child-link">Watches</a>
-                <a href="#" class="mega-menu__child-link">Fashion Shows</a>
+    <section className="mega-menu ">
+            <div className="mega-menu__child">
+                <a href="#" className="mega-menu__child-link">Gifts</a>
+                <a href="#" className="mega-menu__child-link">Highlights</a>
+                <a href="#" className="mega-menu__child-link">Handbags</a>
+                <a href="#" className="mega-menu__child-link">Small Leather Goods</a>
+                <a href="#" className="mega-menu__child-link">Frangrances</a>
+                <a href="#" className="mega-menu__child-link">Accesscories</a>
+                <a href="#" className="mega-menu__child-link">Jewlwry</a>
+                <a href="#" className="mega-menu__child-link">Ready-to-wear</a>
+                <a href="#" className="mega-menu__child-link">Watches</a>
+                <a href="#" className="mega-menu__child-link">Fashion Shows</a>
             </div>
-            <div class="mega-menu__grand">
-                <a href="#" class="mega-menu__link">Gift Shop For Her</a>
-                <a href="#" class="mega-menu__link">Best Sellers</a>
-                <a href="#" class="mega-menu__link">Personalization</a>
-                <a href="#" class="mega-menu__link">Vivienne Holiday collection</a>
-                {/* <!-- <a href="#" class="mega-menu__link">Frangrances</a>
-                <a href="#" class="mega-menu__link">Accesscories</a>
-                <a href="#" class="mega-menu__link">Jewlwry</a>
-                <a href="#" class="mega-menu__link">Ready-to-wear</a>
-                <a href="#" class="mega-menu__link">Watches</a>
-                <a href="#" class="mega-menu__link">Fashion Shows</a> --> */}
+            <div className="mega-menu__grand">
+                <a href="#" className="mega-menu__link">Gift Shop For Her</a>
+                <a href="#" className="mega-menu__link">Best Sellers</a>
+                <a href="#" className="mega-menu__link">Personalization</a>
+                <a href="#" className="mega-menu__link">Vivienne Holiday collection</a>
+                {/* <!-- <a href="#" className="mega-menu__link">Frangrances</a>
+                <a href="#" className="mega-menu__link">Accesscories</a>
+                <a href="#" className="mega-menu__link">Jewlwry</a>
+                <a href="#" className="mega-menu__link">Ready-to-wear</a>
+                <a href="#" className="mega-menu__link">Watches</a>
+                <a href="#" className="mega-menu__link">Fashion Shows</a> --> */}
             </div>
-            <div class="mega-menu__gallery">
-                <img class="mega-menu__gallery-img" src="/img/small-model.jpg"/>
+            <div className="mega-menu__gallery">
+                <img className="mega-menu__gallery-img" src="/img/small-model.jpg"/>
             </div>
         </section>
     

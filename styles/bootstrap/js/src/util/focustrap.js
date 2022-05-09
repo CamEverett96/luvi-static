@@ -29,7 +29,7 @@ const TAB_KEY = 'Tab'
 const TAB_NAV_FORWARD = 'forward'
 const TAB_NAV_BACKWARD = 'backward'
 
-class FocusTrap {
+className FocusTrap {
   constructor(config) {
     this._config = this._getConfig(config)
     this._isActive = false

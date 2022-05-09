@@ -20,7 +20,7 @@ import EventHandler from './dom/event-handler'
 
 const VERSION = '5.1.3'
 
-class BaseComponent {
+className BaseComponent {
   constructor(element) {
     element = getElement(element)
 

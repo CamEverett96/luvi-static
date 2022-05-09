@@ -35,7 +35,7 @@
     let selector = element.getAttribute('data-bs-target');
 
     if (!selector || selector === '#') {
-      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classes,
+      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classNamees,
       // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
       // `document.querySelector` will rightfully complain it is invalid.
       // See https://github.com/twbs/bootstrap/issues/32273
@@ -179,25 +179,25 @@
   const EVENT_ACTIVATE = `activate${EVENT_KEY}`;
   const EVENT_SCROLL = `scroll${EVENT_KEY}`;
   const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`;
-  const CLASS_NAME_DROPDOWN_ITEM = 'dropdown-item';
-  const CLASS_NAME_ACTIVE = 'active';
+  const className_NAME_DROPDOWN_ITEM = 'dropdown-item';
+  const className_NAME_ACTIVE = 'active';
   const SELECTOR_DATA_SPY = '[data-bs-spy="scroll"]';
   const SELECTOR_NAV_LIST_GROUP = '.nav, .list-group';
   const SELECTOR_NAV_LINKS = '.nav-link';
   const SELECTOR_NAV_ITEMS = '.nav-item';
   const SELECTOR_LIST_ITEMS = '.list-group-item';
-  const SELECTOR_LINK_ITEMS = `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}, .${CLASS_NAME_DROPDOWN_ITEM}`;
+  const SELECTOR_LINK_ITEMS = `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}, .${className_NAME_DROPDOWN_ITEM}`;
   const SELECTOR_DROPDOWN = '.dropdown';
   const SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle';
   const METHOD_OFFSET = 'offset';
   const METHOD_POSITION = 'position';
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * className Definition
    * ------------------------------------------------------------------------
    */
 
-  class ScrollSpy extends BaseComponent__default.default {
+  className ScrollSpy extends BaseComponent__default.default {
     constructor(element, config) {
       super(element);
       this._scrollElement = this._element.tagName === 'BODY' ? window : this._element;
@@ -323,18 +323,18 @@
 
       const queries = SELECTOR_LINK_ITEMS.split(',').map(selector => `${selector}[data-bs-target="${target}"],${selector}[href="${target}"]`);
       const link = SelectorEngine__default.default.findOne(queries.join(','), this._config.target);
-      link.classList.add(CLASS_NAME_ACTIVE);
+      link.classNameList.add(className_NAME_ACTIVE);
 
-      if (link.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
-        SelectorEngine__default.default.findOne(SELECTOR_DROPDOWN_TOGGLE, link.closest(SELECTOR_DROPDOWN)).classList.add(CLASS_NAME_ACTIVE);
+      if (link.classNameList.contains(className_NAME_DROPDOWN_ITEM)) {
+        SelectorEngine__default.default.findOne(SELECTOR_DROPDOWN_TOGGLE, link.closest(SELECTOR_DROPDOWN)).classNameList.add(className_NAME_ACTIVE);
       } else {
         SelectorEngine__default.default.parents(link, SELECTOR_NAV_LIST_GROUP).forEach(listGroup => {
           // Set triggered links parents as active
           // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
-          SelectorEngine__default.default.prev(listGroup, `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}`).forEach(item => item.classList.add(CLASS_NAME_ACTIVE)); // Handle special case when .nav-link is inside .nav-item
+          SelectorEngine__default.default.prev(listGroup, `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}`).forEach(item => item.classNameList.add(className_NAME_ACTIVE)); // Handle special case when .nav-link is inside .nav-item
 
           SelectorEngine__default.default.prev(listGroup, SELECTOR_NAV_ITEMS).forEach(navItem => {
-            SelectorEngine__default.default.children(navItem, SELECTOR_NAV_LINKS).forEach(item => item.classList.add(CLASS_NAME_ACTIVE));
+            SelectorEngine__default.default.children(navItem, SELECTOR_NAV_LINKS).forEach(item => item.classNameList.add(className_NAME_ACTIVE));
           });
         });
       }
@@ -345,7 +345,7 @@
     }
 
     _clear() {
-      SelectorEngine__default.default.find(SELECTOR_LINK_ITEMS, this._config.target).filter(node => node.classList.contains(CLASS_NAME_ACTIVE)).forEach(node => node.classList.remove(CLASS_NAME_ACTIVE));
+      SelectorEngine__default.default.find(SELECTOR_LINK_ITEMS, this._config.target).filter(node => node.classNameList.contains(className_NAME_ACTIVE)).forEach(node => node.classNameList.remove(className_NAME_ACTIVE));
     } // Static
 
 

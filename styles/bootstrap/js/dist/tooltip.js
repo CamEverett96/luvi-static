@@ -225,7 +225,7 @@
 
   const DefaultAllowlist = {
     // Global attributes allowed on any supplied element below.
-    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
+    '*': ['className', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
     a: ['target', 'href', 'title', 'rel'],
     area: [],
     b: [],
@@ -305,7 +305,7 @@
   const NAME = 'tooltip';
   const DATA_KEY = 'bs.tooltip';
   const EVENT_KEY = `.${DATA_KEY}`;
-  const CLASS_PREFIX = 'bs-tooltip';
+  const className_PREFIX = 'bs-tooltip';
   const DISALLOWED_ATTRIBUTES = new Set(['sanitize', 'allowList', 'sanitizeFn']);
   const DefaultType = {
     animation: 'boolean',
@@ -320,7 +320,7 @@
     container: '(string|element|boolean)',
     fallbackPlacements: 'array',
     boundary: '(string|element)',
-    customClass: '(string|function)',
+    customclassName: '(string|function)',
     sanitize: 'boolean',
     sanitizeFn: '(null|function)',
     allowList: 'object',
@@ -335,7 +335,7 @@
   };
   const Default = {
     animation: true,
-    template: '<div class="tooltip" role="tooltip">' + '<div class="tooltip-arrow"></div>' + '<div class="tooltip-inner"></div>' + '</div>',
+    template: '<div className="tooltip" role="tooltip">' + '<div className="tooltip-arrow"></div>' + '<div className="tooltip-inner"></div>' + '</div>',
     trigger: 'hover focus',
     title: '',
     delay: 0,
@@ -346,7 +346,7 @@
     container: false,
     fallbackPlacements: ['top', 'right', 'bottom', 'left'],
     boundary: 'clippingParents',
-    customClass: '',
+    customclassName: '',
     sanitize: true,
     sanitizeFn: null,
     allowList: DefaultAllowlist,
@@ -364,13 +364,13 @@
     MOUSEENTER: `mouseenter${EVENT_KEY}`,
     MOUSELEAVE: `mouseleave${EVENT_KEY}`
   };
-  const CLASS_NAME_FADE = 'fade';
-  const CLASS_NAME_MODAL = 'modal';
-  const CLASS_NAME_SHOW = 'show';
+  const className_NAME_FADE = 'fade';
+  const className_NAME_MODAL = 'modal';
+  const className_NAME_SHOW = 'show';
   const HOVER_STATE_SHOW = 'show';
   const HOVER_STATE_OUT = 'out';
   const SELECTOR_TOOLTIP_INNER = '.tooltip-inner';
-  const SELECTOR_MODAL = `.${CLASS_NAME_MODAL}`;
+  const SELECTOR_MODAL = `.${className_NAME_MODAL}`;
   const EVENT_MODAL_HIDE = 'hide.bs.modal';
   const TRIGGER_HOVER = 'hover';
   const TRIGGER_FOCUS = 'focus';
@@ -378,11 +378,11 @@
   const TRIGGER_MANUAL = 'manual';
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * className Definition
    * ------------------------------------------------------------------------
    */
 
-  class Tooltip extends BaseComponent__default.default {
+  className Tooltip extends BaseComponent__default.default {
     constructor(element, config) {
       if (typeof Popper__namespace === 'undefined') {
         throw new TypeError('Bootstrap\'s tooltips require Popper (https://popper.js.org)');
@@ -448,7 +448,7 @@
           context._leave(null, context);
         }
       } else {
-        if (this.getTipElement().classList.contains(CLASS_NAME_SHOW)) {
+        if (this.getTipElement().classNameList.contains(className_NAME_SHOW)) {
           this._leave(null, this);
 
           return;
@@ -504,14 +504,14 @@
       this._element.setAttribute('aria-describedby', tipId);
 
       if (this._config.animation) {
-        tip.classList.add(CLASS_NAME_FADE);
+        tip.classNameList.add(className_NAME_FADE);
       }
 
       const placement = typeof this._config.placement === 'function' ? this._config.placement.call(this, tip, this._element) : this._config.placement;
 
       const attachment = this._getAttachment(placement);
 
-      this._addAttachmentClass(attachment);
+      this._addAttachmentclassName(attachment);
 
       const {
         container
@@ -529,12 +529,12 @@
         this._popper = Popper__namespace.createPopper(this._element, tip, this._getPopperConfig(attachment));
       }
 
-      tip.classList.add(CLASS_NAME_SHOW);
+      tip.classNameList.add(className_NAME_SHOW);
 
-      const customClass = this._resolvePossibleFunction(this._config.customClass);
+      const customclassName = this._resolvePossibleFunction(this._config.customclassName);
 
-      if (customClass) {
-        tip.classList.add(...customClass.split(' '));
+      if (customclassName) {
+        tip.classNameList.add(...customclassName.split(' '));
       } // If this is a touch-enabled device we add extra
       // empty mouseover listeners to the body's immediate children;
       // only needed because of broken event delegation on iOS
@@ -557,7 +557,7 @@
         }
       };
 
-      const isAnimated = this.tip.classList.contains(CLASS_NAME_FADE);
+      const isAnimated = this.tip.classNameList.contains(className_NAME_FADE);
 
       this._queueCallback(complete, this.tip, isAnimated);
     }
@@ -578,7 +578,7 @@
           tip.remove();
         }
 
-        this._cleanTipClass();
+        this._cleanTipclassName();
 
         this._element.removeAttribute('aria-describedby');
 
@@ -593,7 +593,7 @@
         return;
       }
 
-      tip.classList.remove(CLASS_NAME_SHOW); // If this is a touch-enabled device we remove the extra
+      tip.classNameList.remove(className_NAME_SHOW); // If this is a touch-enabled device we remove the extra
       // empty mouseover listeners we added for iOS support
 
       if ('ontouchstart' in document.documentElement) {
@@ -603,7 +603,7 @@
       this._activeTrigger[TRIGGER_CLICK] = false;
       this._activeTrigger[TRIGGER_FOCUS] = false;
       this._activeTrigger[TRIGGER_HOVER] = false;
-      const isAnimated = this.tip.classList.contains(CLASS_NAME_FADE);
+      const isAnimated = this.tip.classNameList.contains(className_NAME_FADE);
 
       this._queueCallback(complete, this.tip, isAnimated);
 
@@ -630,7 +630,7 @@
       element.innerHTML = this._config.template;
       const tip = element.children[0];
       this.setContent(tip);
-      tip.classList.remove(CLASS_NAME_FADE, CLASS_NAME_SHOW);
+      tip.classNameList.remove(className_NAME_FADE, className_NAME_SHOW);
       this.tip = tip;
       return this.tip;
     }
@@ -765,8 +765,8 @@
       };
     }
 
-    _addAttachmentClass(attachment) {
-      this.getTipElement().classList.add(`${this._getBasicClassPrefix()}-${this.updateAttachment(attachment)}`);
+    _addAttachmentclassName(attachment) {
+      this.getTipElement().classNameList.add(`${this._getBasicclassNamePrefix()}-${this.updateAttachment(attachment)}`);
     }
 
     _getAttachment(placement) {
@@ -828,7 +828,7 @@
         context._activeTrigger[event.type === 'focusin' ? TRIGGER_FOCUS : TRIGGER_HOVER] = true;
       }
 
-      if (context.getTipElement().classList.contains(CLASS_NAME_SHOW) || context._hoverState === HOVER_STATE_SHOW) {
+      if (context.getTipElement().classNameList.contains(className_NAME_SHOW) || context._hoverState === HOVER_STATE_SHOW) {
         context._hoverState = HOVER_STATE_SHOW;
         return;
       }
@@ -936,18 +936,18 @@
       return config;
     }
 
-    _cleanTipClass() {
+    _cleanTipclassName() {
       const tip = this.getTipElement();
-      const basicClassPrefixRegex = new RegExp(`(^|\\s)${this._getBasicClassPrefix()}\\S+`, 'g');
-      const tabClass = tip.getAttribute('class').match(basicClassPrefixRegex);
+      const basicclassNamePrefixRegex = new RegExp(`(^|\\s)${this._getBasicclassNamePrefix()}\\S+`, 'g');
+      const tabclassName = tip.getAttribute('className').match(basicclassNamePrefixRegex);
 
-      if (tabClass !== null && tabClass.length > 0) {
-        tabClass.map(token => token.trim()).forEach(tClass => tip.classList.remove(tClass));
+      if (tabclassName !== null && tabclassName.length > 0) {
+        tabclassName.map(token => token.trim()).forEach(tclassName => tip.classNameList.remove(tclassName));
       }
     }
 
-    _getBasicClassPrefix() {
-      return CLASS_PREFIX;
+    _getBasicclassNamePrefix() {
+      return className_PREFIX;
     }
 
     _handlePopperPlacementChange(popperData) {
@@ -961,9 +961,9 @@
 
       this.tip = state.elements.popper;
 
-      this._cleanTipClass();
+      this._cleanTipclassName();
 
-      this._addAttachmentClass(this._getAttachment(state.placement));
+      this._addAttachmentclassName(this._getAttachment(state.placement));
     }
 
     _disposePopper() {

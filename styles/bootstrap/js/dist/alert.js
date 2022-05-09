@@ -25,7 +25,7 @@
     let selector = element.getAttribute('data-bs-target');
 
     if (!selector || selector === '#') {
-      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classes,
+      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classNamees,
       // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
       // `document.querySelector` will rightfully complain it is invalid.
       // See https://github.com/twbs/bootstrap/issues/32273
@@ -55,7 +55,7 @@
       return true;
     }
 
-    if (element.classList.contains('disabled')) {
+    if (element.classNameList.contains('disabled')) {
       return true;
     }
 
@@ -157,15 +157,15 @@
   const EVENT_KEY = `.${DATA_KEY}`;
   const EVENT_CLOSE = `close${EVENT_KEY}`;
   const EVENT_CLOSED = `closed${EVENT_KEY}`;
-  const CLASS_NAME_FADE = 'fade';
-  const CLASS_NAME_SHOW = 'show';
+  const className_NAME_FADE = 'fade';
+  const className_NAME_SHOW = 'show';
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * className Definition
    * ------------------------------------------------------------------------
    */
 
-  class Alert extends BaseComponent__default.default {
+  className Alert extends BaseComponent__default.default {
     // Getters
     static get NAME() {
       return NAME;
@@ -179,9 +179,9 @@
         return;
       }
 
-      this._element.classList.remove(CLASS_NAME_SHOW);
+      this._element.classNameList.remove(className_NAME_SHOW);
 
-      const isAnimated = this._element.classList.contains(CLASS_NAME_FADE);
+      const isAnimated = this._element.classNameList.contains(className_NAME_FADE);
 
       this._queueCallback(() => this._destroyElement(), this._element, isAnimated);
     } // Private

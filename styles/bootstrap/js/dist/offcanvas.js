@@ -37,7 +37,7 @@
     let selector = element.getAttribute('data-bs-target');
 
     if (!selector || selector === '#') {
-      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classes,
+      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classNamees,
       // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
       // `document.querySelector` will rightfully complain it is invalid.
       // See https://github.com/twbs/bootstrap/issues/32273
@@ -139,7 +139,7 @@
       return true;
     }
 
-    if (element.classList.contains('disabled')) {
+    if (element.classNameList.contains('disabled')) {
       return true;
     }
 
@@ -257,7 +257,7 @@
   const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
   const SELECTOR_STICKY_CONTENT = '.sticky-top';
 
-  class ScrollBarHelper {
+  className ScrollBarHelper {
     constructor() {
       this._element = document.body;
     }
@@ -375,11 +375,11 @@
     clickCallback: '(function|null)'
   };
   const NAME$2 = 'backdrop';
-  const CLASS_NAME_FADE = 'fade';
-  const CLASS_NAME_SHOW$1 = 'show';
+  const className_NAME_FADE = 'fade';
+  const className_NAME_SHOW$1 = 'show';
   const EVENT_MOUSEDOWN = `mousedown.bs.${NAME$2}`;
 
-  class Backdrop {
+  className Backdrop {
     constructor(config) {
       this._config = this._getConfig(config);
       this._isAppended = false;
@@ -398,7 +398,7 @@
         reflow(this._getElement());
       }
 
-      this._getElement().classList.add(CLASS_NAME_SHOW$1);
+      this._getElement().classNameList.add(className_NAME_SHOW$1);
 
       this._emulateAnimation(() => {
         execute(callback);
@@ -411,7 +411,7 @@
         return;
       }
 
-      this._getElement().classList.remove(CLASS_NAME_SHOW$1);
+      this._getElement().classNameList.remove(className_NAME_SHOW$1);
 
       this._emulateAnimation(() => {
         this.dispose();
@@ -426,7 +426,7 @@
         backdrop.className = this._config.className;
 
         if (this._config.isAnimated) {
-          backdrop.classList.add(CLASS_NAME_FADE);
+          backdrop.classNameList.add(className_NAME_FADE);
         }
 
         this._element = backdrop;
@@ -500,7 +500,7 @@
   const TAB_NAV_FORWARD = 'forward';
   const TAB_NAV_BACKWARD = 'backward';
 
-  class FocusTrap {
+  className FocusTrap {
     constructor(config) {
       this._config = this._getConfig(config);
       this._isActive = false;
@@ -633,8 +633,8 @@
     keyboard: 'boolean',
     scroll: 'boolean'
   };
-  const CLASS_NAME_SHOW = 'show';
-  const CLASS_NAME_BACKDROP = 'offcanvas-backdrop';
+  const className_NAME_SHOW = 'show';
+  const className_NAME_BACKDROP = 'offcanvas-backdrop';
   const OPEN_SELECTOR = '.offcanvas.show';
   const EVENT_SHOW = `show${EVENT_KEY}`;
   const EVENT_SHOWN = `shown${EVENT_KEY}`;
@@ -645,11 +645,11 @@
   const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="offcanvas"]';
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * className Definition
    * ------------------------------------------------------------------------
    */
 
-  class Offcanvas extends BaseComponent__default.default {
+  className Offcanvas extends BaseComponent__default.default {
     constructor(element, config) {
       super(element);
       this._config = this._getConfig(config);
@@ -702,7 +702,7 @@
 
       this._element.setAttribute('role', 'dialog');
 
-      this._element.classList.add(CLASS_NAME_SHOW);
+      this._element.classNameList.add(className_NAME_SHOW);
 
       const completeCallBack = () => {
         if (!this._config.scroll) {
@@ -734,7 +734,7 @@
 
       this._isShown = false;
 
-      this._element.classList.remove(CLASS_NAME_SHOW);
+      this._element.classNameList.remove(className_NAME_SHOW);
 
       this._backdrop.hide();
 
@@ -777,7 +777,7 @@
 
     _initializeBackDrop() {
       return new Backdrop({
-        className: CLASS_NAME_BACKDROP,
+        className: className_NAME_BACKDROP,
         isVisible: this._config.backdrop,
         isAnimated: true,
         rootElement: this._element.parentNode,

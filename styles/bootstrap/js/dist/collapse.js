@@ -36,7 +36,7 @@
     let selector = element.getAttribute('data-bs-target');
 
     if (!selector || selector === '#') {
-      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classes,
+      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classNamees,
       // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
       // `document.querySelector` will rightfully complain it is invalid.
       // See https://github.com/twbs/bootstrap/issues/32273
@@ -199,23 +199,23 @@
   const EVENT_HIDE = `hide${EVENT_KEY}`;
   const EVENT_HIDDEN = `hidden${EVENT_KEY}`;
   const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`;
-  const CLASS_NAME_SHOW = 'show';
-  const CLASS_NAME_COLLAPSE = 'collapse';
-  const CLASS_NAME_COLLAPSING = 'collapsing';
-  const CLASS_NAME_COLLAPSED = 'collapsed';
-  const CLASS_NAME_DEEPER_CHILDREN = `:scope .${CLASS_NAME_COLLAPSE} .${CLASS_NAME_COLLAPSE}`;
-  const CLASS_NAME_HORIZONTAL = 'collapse-horizontal';
+  const className_NAME_SHOW = 'show';
+  const className_NAME_COLLAPSE = 'collapse';
+  const className_NAME_COLLAPSING = 'collapsing';
+  const className_NAME_COLLAPSED = 'collapsed';
+  const className_NAME_DEEPER_CHILDREN = `:scope .${className_NAME_COLLAPSE} .${className_NAME_COLLAPSE}`;
+  const className_NAME_HORIZONTAL = 'collapse-horizontal';
   const WIDTH = 'width';
   const HEIGHT = 'height';
   const SELECTOR_ACTIVES = '.collapse.show, .collapse.collapsing';
   const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="collapse"]';
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * className Definition
    * ------------------------------------------------------------------------
    */
 
-  class Collapse extends BaseComponent__default.default {
+  className Collapse extends BaseComponent__default.default {
     constructor(element, config) {
       super(element);
       this._isTransitioning = false;
@@ -238,7 +238,7 @@
       this._initializeChildren();
 
       if (!this._config.parent) {
-        this._addAriaAndCollapsedClass(this._triggerArray, this._isShown());
+        this._addAriaAndCollapsedclassName(this._triggerArray, this._isShown());
       }
 
       if (this._config.toggle) {
@@ -273,7 +273,7 @@
       let activesData;
 
       if (this._config.parent) {
-        const children = SelectorEngine__default.default.find(CLASS_NAME_DEEPER_CHILDREN, this._config.parent);
+        const children = SelectorEngine__default.default.find(className_NAME_DEEPER_CHILDREN, this._config.parent);
         actives = SelectorEngine__default.default.find(SELECTOR_ACTIVES, this._config.parent).filter(elem => !children.includes(elem)); // remove children if greater depth
       }
 
@@ -308,22 +308,22 @@
 
       const dimension = this._getDimension();
 
-      this._element.classList.remove(CLASS_NAME_COLLAPSE);
+      this._element.classNameList.remove(className_NAME_COLLAPSE);
 
-      this._element.classList.add(CLASS_NAME_COLLAPSING);
+      this._element.classNameList.add(className_NAME_COLLAPSING);
 
       this._element.style[dimension] = 0;
 
-      this._addAriaAndCollapsedClass(this._triggerArray, true);
+      this._addAriaAndCollapsedclassName(this._triggerArray, true);
 
       this._isTransitioning = true;
 
       const complete = () => {
         this._isTransitioning = false;
 
-        this._element.classList.remove(CLASS_NAME_COLLAPSING);
+        this._element.classNameList.remove(className_NAME_COLLAPSING);
 
-        this._element.classList.add(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW);
+        this._element.classNameList.add(className_NAME_COLLAPSE, className_NAME_SHOW);
 
         this._element.style[dimension] = '';
         EventHandler__default.default.trigger(this._element, EVENT_SHOWN);
@@ -353,9 +353,9 @@
       this._element.style[dimension] = `${this._element.getBoundingClientRect()[dimension]}px`;
       reflow(this._element);
 
-      this._element.classList.add(CLASS_NAME_COLLAPSING);
+      this._element.classNameList.add(className_NAME_COLLAPSING);
 
-      this._element.classList.remove(CLASS_NAME_COLLAPSE, CLASS_NAME_SHOW);
+      this._element.classNameList.remove(className_NAME_COLLAPSE, className_NAME_SHOW);
 
       const triggerArrayLength = this._triggerArray.length;
 
@@ -364,7 +364,7 @@
         const elem = getElementFromSelector(trigger);
 
         if (elem && !this._isShown(elem)) {
-          this._addAriaAndCollapsedClass([trigger], false);
+          this._addAriaAndCollapsedclassName([trigger], false);
         }
       }
 
@@ -373,9 +373,9 @@
       const complete = () => {
         this._isTransitioning = false;
 
-        this._element.classList.remove(CLASS_NAME_COLLAPSING);
+        this._element.classNameList.remove(className_NAME_COLLAPSING);
 
-        this._element.classList.add(CLASS_NAME_COLLAPSE);
+        this._element.classNameList.add(className_NAME_COLLAPSE);
 
         EventHandler__default.default.trigger(this._element, EVENT_HIDDEN);
       };
@@ -386,7 +386,7 @@
     }
 
     _isShown(element = this._element) {
-      return element.classList.contains(CLASS_NAME_SHOW);
+      return element.classNameList.contains(className_NAME_SHOW);
     } // Private
 
 
@@ -403,7 +403,7 @@
     }
 
     _getDimension() {
-      return this._element.classList.contains(CLASS_NAME_HORIZONTAL) ? WIDTH : HEIGHT;
+      return this._element.classNameList.contains(className_NAME_HORIZONTAL) ? WIDTH : HEIGHT;
     }
 
     _initializeChildren() {
@@ -411,26 +411,26 @@
         return;
       }
 
-      const children = SelectorEngine__default.default.find(CLASS_NAME_DEEPER_CHILDREN, this._config.parent);
+      const children = SelectorEngine__default.default.find(className_NAME_DEEPER_CHILDREN, this._config.parent);
       SelectorEngine__default.default.find(SELECTOR_DATA_TOGGLE, this._config.parent).filter(elem => !children.includes(elem)).forEach(element => {
         const selected = getElementFromSelector(element);
 
         if (selected) {
-          this._addAriaAndCollapsedClass([element], this._isShown(selected));
+          this._addAriaAndCollapsedclassName([element], this._isShown(selected));
         }
       });
     }
 
-    _addAriaAndCollapsedClass(triggerArray, isOpen) {
+    _addAriaAndCollapsedclassName(triggerArray, isOpen) {
       if (!triggerArray.length) {
         return;
       }
 
       triggerArray.forEach(elem => {
         if (isOpen) {
-          elem.classList.remove(CLASS_NAME_COLLAPSED);
+          elem.classNameList.remove(className_NAME_COLLAPSED);
         } else {
-          elem.classList.add(CLASS_NAME_COLLAPSED);
+          elem.classNameList.add(className_NAME_COLLAPSED);
         }
 
         elem.setAttribute('aria-expanded', isOpen);

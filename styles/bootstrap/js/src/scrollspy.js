@@ -43,15 +43,15 @@ const EVENT_ACTIVATE = `activate${EVENT_KEY}`
 const EVENT_SCROLL = `scroll${EVENT_KEY}`
 const EVENT_LOAD_DATA_API = `load${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_DROPDOWN_ITEM = 'dropdown-item'
-const CLASS_NAME_ACTIVE = 'active'
+const className_NAME_DROPDOWN_ITEM = 'dropdown-item'
+const className_NAME_ACTIVE = 'active'
 
 const SELECTOR_DATA_SPY = '[data-bs-spy="scroll"]'
 const SELECTOR_NAV_LIST_GROUP = '.nav, .list-group'
 const SELECTOR_NAV_LINKS = '.nav-link'
 const SELECTOR_NAV_ITEMS = '.nav-item'
 const SELECTOR_LIST_ITEMS = '.list-group-item'
-const SELECTOR_LINK_ITEMS = `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}, .${CLASS_NAME_DROPDOWN_ITEM}`
+const SELECTOR_LINK_ITEMS = `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}, .${className_NAME_DROPDOWN_ITEM}`
 const SELECTOR_DROPDOWN = '.dropdown'
 const SELECTOR_DROPDOWN_TOGGLE = '.dropdown-toggle'
 
@@ -60,11 +60,11 @@ const METHOD_POSITION = 'position'
 
 /**
  * ------------------------------------------------------------------------
- * Class Definition
+ * className Definition
  * ------------------------------------------------------------------------
  */
 
-class ScrollSpy extends BaseComponent {
+className ScrollSpy extends BaseComponent {
   constructor(element, config) {
     super(element)
     this._scrollElement = this._element.tagName === 'BODY' ? window : this._element
@@ -221,23 +221,23 @@ class ScrollSpy extends BaseComponent {
 
     const link = SelectorEngine.findOne(queries.join(','), this._config.target)
 
-    link.classList.add(CLASS_NAME_ACTIVE)
-    if (link.classList.contains(CLASS_NAME_DROPDOWN_ITEM)) {
+    link.classNameList.add(className_NAME_ACTIVE)
+    if (link.classNameList.contains(className_NAME_DROPDOWN_ITEM)) {
       SelectorEngine.findOne(SELECTOR_DROPDOWN_TOGGLE, link.closest(SELECTOR_DROPDOWN))
-        .classList.add(CLASS_NAME_ACTIVE)
+        .classNameList.add(className_NAME_ACTIVE)
     } else {
       SelectorEngine.parents(link, SELECTOR_NAV_LIST_GROUP)
         .forEach(listGroup => {
           // Set triggered links parents as active
           // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
           SelectorEngine.prev(listGroup, `${SELECTOR_NAV_LINKS}, ${SELECTOR_LIST_ITEMS}`)
-            .forEach(item => item.classList.add(CLASS_NAME_ACTIVE))
+            .forEach(item => item.classNameList.add(className_NAME_ACTIVE))
 
           // Handle special case when .nav-link is inside .nav-item
           SelectorEngine.prev(listGroup, SELECTOR_NAV_ITEMS)
             .forEach(navItem => {
               SelectorEngine.children(navItem, SELECTOR_NAV_LINKS)
-                .forEach(item => item.classList.add(CLASS_NAME_ACTIVE))
+                .forEach(item => item.classNameList.add(className_NAME_ACTIVE))
             })
         })
     }
@@ -249,8 +249,8 @@ class ScrollSpy extends BaseComponent {
 
   _clear() {
     SelectorEngine.find(SELECTOR_LINK_ITEMS, this._config.target)
-      .filter(node => node.classList.contains(CLASS_NAME_ACTIVE))
-      .forEach(node => node.classList.remove(CLASS_NAME_ACTIVE))
+      .filter(node => node.classNameList.contains(className_NAME_ACTIVE))
+      .forEach(node => node.classNameList.remove(className_NAME_ACTIVE))
   }
 
   // Static

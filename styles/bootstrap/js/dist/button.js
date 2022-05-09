@@ -85,16 +85,16 @@
   const DATA_KEY = 'bs.button';
   const EVENT_KEY = `.${DATA_KEY}`;
   const DATA_API_KEY = '.data-api';
-  const CLASS_NAME_ACTIVE = 'active';
+  const className_NAME_ACTIVE = 'active';
   const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="button"]';
   const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`;
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * className Definition
    * ------------------------------------------------------------------------
    */
 
-  class Button extends BaseComponent__default.default {
+  className Button extends BaseComponent__default.default {
     // Getters
     static get NAME() {
       return NAME;
@@ -102,8 +102,8 @@
 
 
     toggle() {
-      // Toggle class and sync the `aria-pressed` attribute with the return value of the `.toggle()` method
-      this._element.setAttribute('aria-pressed', this._element.classList.toggle(CLASS_NAME_ACTIVE));
+      // Toggle className and sync the `aria-pressed` attribute with the return value of the `.toggle()` method
+      this._element.setAttribute('aria-pressed', this._element.classNameList.toggle(className_NAME_ACTIVE));
     } // Static
 
 

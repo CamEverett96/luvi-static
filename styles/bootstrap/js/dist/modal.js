@@ -37,7 +37,7 @@
     let selector = element.getAttribute('data-bs-target');
 
     if (!selector || selector === '#') {
-      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classes,
+      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classNamees,
       // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
       // `document.querySelector` will rightfully complain it is invalid.
       // See https://github.com/twbs/bootstrap/issues/32273
@@ -139,7 +139,7 @@
       return true;
     }
 
-    if (element.classList.contains('disabled')) {
+    if (element.classNameList.contains('disabled')) {
       return true;
     }
 
@@ -259,7 +259,7 @@
   const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
   const SELECTOR_STICKY_CONTENT = '.sticky-top';
 
-  class ScrollBarHelper {
+  className ScrollBarHelper {
     constructor() {
       this._element = document.body;
     }
@@ -377,11 +377,11 @@
     clickCallback: '(function|null)'
   };
   const NAME$2 = 'backdrop';
-  const CLASS_NAME_FADE$1 = 'fade';
-  const CLASS_NAME_SHOW$1 = 'show';
+  const className_NAME_FADE$1 = 'fade';
+  const className_NAME_SHOW$1 = 'show';
   const EVENT_MOUSEDOWN = `mousedown.bs.${NAME$2}`;
 
-  class Backdrop {
+  className Backdrop {
     constructor(config) {
       this._config = this._getConfig(config);
       this._isAppended = false;
@@ -400,7 +400,7 @@
         reflow(this._getElement());
       }
 
-      this._getElement().classList.add(CLASS_NAME_SHOW$1);
+      this._getElement().classNameList.add(className_NAME_SHOW$1);
 
       this._emulateAnimation(() => {
         execute(callback);
@@ -413,7 +413,7 @@
         return;
       }
 
-      this._getElement().classList.remove(CLASS_NAME_SHOW$1);
+      this._getElement().classNameList.remove(className_NAME_SHOW$1);
 
       this._emulateAnimation(() => {
         this.dispose();
@@ -428,7 +428,7 @@
         backdrop.className = this._config.className;
 
         if (this._config.isAnimated) {
-          backdrop.classList.add(CLASS_NAME_FADE$1);
+          backdrop.classNameList.add(className_NAME_FADE$1);
         }
 
         this._element = backdrop;
@@ -502,7 +502,7 @@
   const TAB_NAV_FORWARD = 'forward';
   const TAB_NAV_BACKWARD = 'backward';
 
-  class FocusTrap {
+  className FocusTrap {
     constructor(config) {
       this._config = this._getConfig(config);
       this._isActive = false;
@@ -645,21 +645,21 @@
   const EVENT_MOUSEUP_DISMISS = `mouseup.dismiss${EVENT_KEY}`;
   const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY}`;
   const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`;
-  const CLASS_NAME_OPEN = 'modal-open';
-  const CLASS_NAME_FADE = 'fade';
-  const CLASS_NAME_SHOW = 'show';
-  const CLASS_NAME_STATIC = 'modal-static';
+  const className_NAME_OPEN = 'modal-open';
+  const className_NAME_FADE = 'fade';
+  const className_NAME_SHOW = 'show';
+  const className_NAME_STATIC = 'modal-static';
   const OPEN_SELECTOR = '.modal.show';
   const SELECTOR_DIALOG = '.modal-dialog';
   const SELECTOR_MODAL_BODY = '.modal-body';
   const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="modal"]';
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * className Definition
    * ------------------------------------------------------------------------
    */
 
-  class Modal extends BaseComponent__default.default {
+  className Modal extends BaseComponent__default.default {
     constructor(element, config) {
       super(element);
       this._config = this._getConfig(config);
@@ -707,7 +707,7 @@
 
       this._scrollBar.hide();
 
-      document.body.classList.add(CLASS_NAME_OPEN);
+      document.body.classNameList.add(className_NAME_OPEN);
 
       this._adjustDialog();
 
@@ -751,7 +751,7 @@
 
       this._focustrap.deactivate();
 
-      this._element.classList.remove(CLASS_NAME_SHOW);
+      this._element.classNameList.remove(className_NAME_SHOW);
 
       EventHandler__default.default.off(this._element, EVENT_CLICK_DISMISS);
       EventHandler__default.default.off(this._dialog, EVENT_MOUSEDOWN_DISMISS);
@@ -825,7 +825,7 @@
         reflow(this._element);
       }
 
-      this._element.classList.add(CLASS_NAME_SHOW);
+      this._element.classNameList.add(className_NAME_SHOW);
 
       const transitionComplete = () => {
         if (this._config.focus) {
@@ -876,7 +876,7 @@
       this._isTransitioning = false;
 
       this._backdrop.hide(() => {
-        document.body.classList.remove(CLASS_NAME_OPEN);
+        document.body.classNameList.remove(className_NAME_OPEN);
 
         this._resetAdjustments();
 
@@ -908,7 +908,7 @@
     }
 
     _isAnimated() {
-      return this._element.classList.contains(CLASS_NAME_FADE);
+      return this._element.classNameList.contains(className_NAME_FADE);
     }
 
     _triggerBackdropTransition() {
@@ -919,13 +919,13 @@
       }
 
       const {
-        classList,
+        classNameList,
         scrollHeight,
         style
       } = this._element;
       const isModalOverflowing = scrollHeight > document.documentElement.clientHeight; // return if the following background transition hasn't yet completed
 
-      if (!isModalOverflowing && style.overflowY === 'hidden' || classList.contains(CLASS_NAME_STATIC)) {
+      if (!isModalOverflowing && style.overflowY === 'hidden' || classNameList.contains(className_NAME_STATIC)) {
         return;
       }
 
@@ -933,10 +933,10 @@
         style.overflowY = 'hidden';
       }
 
-      classList.add(CLASS_NAME_STATIC);
+      classNameList.add(className_NAME_STATIC);
 
       this._queueCallback(() => {
-        classList.remove(CLASS_NAME_STATIC);
+        classNameList.remove(className_NAME_STATIC);
 
         if (!isModalOverflowing) {
           this._queueCallback(() => {

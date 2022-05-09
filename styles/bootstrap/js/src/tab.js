@@ -32,10 +32,10 @@ const EVENT_SHOW = `show${EVENT_KEY}`
 const EVENT_SHOWN = `shown${EVENT_KEY}`
 const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_DROPDOWN_MENU = 'dropdown-menu'
-const CLASS_NAME_ACTIVE = 'active'
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
+const className_NAME_DROPDOWN_MENU = 'dropdown-menu'
+const className_NAME_ACTIVE = 'active'
+const className_NAME_FADE = 'fade'
+const className_NAME_SHOW = 'show'
 
 const SELECTOR_DROPDOWN = '.dropdown'
 const SELECTOR_NAV_LIST_GROUP = '.nav, .list-group'
@@ -47,11 +47,11 @@ const SELECTOR_DROPDOWN_ACTIVE_CHILD = ':scope > .dropdown-menu .active'
 
 /**
  * ------------------------------------------------------------------------
- * Class Definition
+ * className Definition
  * ------------------------------------------------------------------------
  */
 
-class Tab extends BaseComponent {
+className Tab extends BaseComponent {
   // Getters
 
   static get NAME() {
@@ -63,7 +63,7 @@ class Tab extends BaseComponent {
   show() {
     if ((this._element.parentNode &&
       this._element.parentNode.nodeType === Node.ELEMENT_NODE &&
-      this._element.classList.contains(CLASS_NAME_ACTIVE))) {
+      this._element.classNameList.contains(className_NAME_ACTIVE))) {
       return
     }
 
@@ -117,12 +117,12 @@ class Tab extends BaseComponent {
       SelectorEngine.children(container, SELECTOR_ACTIVE)
 
     const active = activeElements[0]
-    const isTransitioning = callback && (active && active.classList.contains(CLASS_NAME_FADE))
+    const isTransitioning = callback && (active && active.classNameList.contains(className_NAME_FADE))
 
     const complete = () => this._transitionComplete(element, active, callback)
 
     if (active && isTransitioning) {
-      active.classList.remove(CLASS_NAME_SHOW)
+      active.classNameList.remove(className_NAME_SHOW)
       this._queueCallback(complete, element, true)
     } else {
       complete()
@@ -131,12 +131,12 @@ class Tab extends BaseComponent {
 
   _transitionComplete(element, active, callback) {
     if (active) {
-      active.classList.remove(CLASS_NAME_ACTIVE)
+      active.classNameList.remove(className_NAME_ACTIVE)
 
       const dropdownChild = SelectorEngine.findOne(SELECTOR_DROPDOWN_ACTIVE_CHILD, active.parentNode)
 
       if (dropdownChild) {
-        dropdownChild.classList.remove(CLASS_NAME_ACTIVE)
+        dropdownChild.classNameList.remove(className_NAME_ACTIVE)
       }
 
       if (active.getAttribute('role') === 'tab') {
@@ -144,15 +144,15 @@ class Tab extends BaseComponent {
       }
     }
 
-    element.classList.add(CLASS_NAME_ACTIVE)
+    element.classNameList.add(className_NAME_ACTIVE)
     if (element.getAttribute('role') === 'tab') {
       element.setAttribute('aria-selected', true)
     }
 
     reflow(element)
 
-    if (element.classList.contains(CLASS_NAME_FADE)) {
-      element.classList.add(CLASS_NAME_SHOW)
+    if (element.classNameList.contains(className_NAME_FADE)) {
+      element.classNameList.add(className_NAME_SHOW)
     }
 
     let parent = element.parentNode
@@ -160,12 +160,12 @@ class Tab extends BaseComponent {
       parent = parent.parentNode
     }
 
-    if (parent && parent.classList.contains(CLASS_NAME_DROPDOWN_MENU)) {
+    if (parent && parent.classNameList.contains(className_NAME_DROPDOWN_MENU)) {
       const dropdownElement = element.closest(SELECTOR_DROPDOWN)
 
       if (dropdownElement) {
         SelectorEngine.find(SELECTOR_DROPDOWN_TOGGLE, dropdownElement)
-          .forEach(dropdown => dropdown.classList.add(CLASS_NAME_ACTIVE))
+          .forEach(dropdown => dropdown.classNameList.add(className_NAME_ACTIVE))
       }
 
       element.setAttribute('aria-expanded', true)

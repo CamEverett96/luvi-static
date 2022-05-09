@@ -41,7 +41,7 @@
       return true;
     }
 
-    if (element.classList.contains('disabled')) {
+    if (element.classNameList.contains('disabled')) {
       return true;
     }
 

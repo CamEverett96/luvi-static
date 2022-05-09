@@ -34,7 +34,7 @@
     let selector = element.getAttribute('data-bs-target');
 
     if (!selector || selector === '#') {
-      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classes,
+      let hrefAttr = element.getAttribute('href'); // The only valid content that could double as a selector are IDs or classNamees,
       // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
       // `document.querySelector` will rightfully complain it is invalid.
       // See https://github.com/twbs/bootstrap/issues/32273
@@ -88,7 +88,7 @@
       return true;
     }
 
-    if (element.classList.contains('disabled')) {
+    if (element.classNameList.contains('disabled')) {
       return true;
     }
 
@@ -210,11 +210,11 @@
   const EVENT_HIDDEN = `hidden${EVENT_KEY}`;
   const EVENT_SHOW = `show${EVENT_KEY}`;
   const EVENT_SHOWN = `shown${EVENT_KEY}`;
-  const CLASS_NAME_FADE = 'fade';
-  const CLASS_NAME_HIDE = 'hide'; // @deprecated - kept here only for backwards compatibility
+  const className_NAME_FADE = 'fade';
+  const className_NAME_HIDE = 'hide'; // @deprecated - kept here only for backwards compatibility
 
-  const CLASS_NAME_SHOW = 'show';
-  const CLASS_NAME_SHOWING = 'showing';
+  const className_NAME_SHOW = 'show';
+  const className_NAME_SHOWING = 'showing';
   const DefaultType = {
     animation: 'boolean',
     autohide: 'boolean',
@@ -227,11 +227,11 @@
   };
   /**
    * ------------------------------------------------------------------------
-   * Class Definition
+   * className Definition
    * ------------------------------------------------------------------------
    */
 
-  class Toast extends BaseComponent__default.default {
+  className Toast extends BaseComponent__default.default {
     constructor(element, config) {
       super(element);
       this._config = this._getConfig(config);
@@ -266,31 +266,31 @@
       this._clearTimeout();
 
       if (this._config.animation) {
-        this._element.classList.add(CLASS_NAME_FADE);
+        this._element.classNameList.add(className_NAME_FADE);
       }
 
       const complete = () => {
-        this._element.classList.remove(CLASS_NAME_SHOWING);
+        this._element.classNameList.remove(className_NAME_SHOWING);
 
         EventHandler__default.default.trigger(this._element, EVENT_SHOWN);
 
         this._maybeScheduleHide();
       };
 
-      this._element.classList.remove(CLASS_NAME_HIDE); // @deprecated
+      this._element.classNameList.remove(className_NAME_HIDE); // @deprecated
 
 
       reflow(this._element);
 
-      this._element.classList.add(CLASS_NAME_SHOW);
+      this._element.classNameList.add(className_NAME_SHOW);
 
-      this._element.classList.add(CLASS_NAME_SHOWING);
+      this._element.classNameList.add(className_NAME_SHOWING);
 
       this._queueCallback(complete, this._element, this._config.animation);
     }
 
     hide() {
-      if (!this._element.classList.contains(CLASS_NAME_SHOW)) {
+      if (!this._element.classNameList.contains(className_NAME_SHOW)) {
         return;
       }
 
@@ -301,17 +301,17 @@
       }
 
       const complete = () => {
-        this._element.classList.add(CLASS_NAME_HIDE); // @deprecated
+        this._element.classNameList.add(className_NAME_HIDE); // @deprecated
 
 
-        this._element.classList.remove(CLASS_NAME_SHOWING);
+        this._element.classNameList.remove(className_NAME_SHOWING);
 
-        this._element.classList.remove(CLASS_NAME_SHOW);
+        this._element.classNameList.remove(className_NAME_SHOW);
 
         EventHandler__default.default.trigger(this._element, EVENT_HIDDEN);
       };
 
-      this._element.classList.add(CLASS_NAME_SHOWING);
+      this._element.classNameList.add(className_NAME_SHOWING);
 
       this._queueCallback(complete, this._element, this._config.animation);
     }
@@ -319,8 +319,8 @@
     dispose() {
       this._clearTimeout();
 
-      if (this._element.classList.contains(CLASS_NAME_SHOW)) {
-        this._element.classList.remove(CLASS_NAME_SHOW);
+      if (this._element.classNameList.contains(className_NAME_SHOW)) {
+        this._element.classNameList.remove(className_NAME_SHOW);
       }
 
       super.dispose();

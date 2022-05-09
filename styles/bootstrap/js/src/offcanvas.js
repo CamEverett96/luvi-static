@@ -46,8 +46,8 @@ const DefaultType = {
   scroll: 'boolean'
 }
 
-const CLASS_NAME_SHOW = 'show'
-const CLASS_NAME_BACKDROP = 'offcanvas-backdrop'
+const className_NAME_SHOW = 'show'
+const className_NAME_BACKDROP = 'offcanvas-backdrop'
 const OPEN_SELECTOR = '.offcanvas.show'
 
 const EVENT_SHOW = `show${EVENT_KEY}`
@@ -61,11 +61,11 @@ const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="offcanvas"]'
 
 /**
  * ------------------------------------------------------------------------
- * Class Definition
+ * className Definition
  * ------------------------------------------------------------------------
  */
 
-class Offcanvas extends BaseComponent {
+className Offcanvas extends BaseComponent {
   constructor(element, config) {
     super(element)
 
@@ -115,7 +115,7 @@ class Offcanvas extends BaseComponent {
     this._element.removeAttribute('aria-hidden')
     this._element.setAttribute('aria-modal', true)
     this._element.setAttribute('role', 'dialog')
-    this._element.classList.add(CLASS_NAME_SHOW)
+    this._element.classNameList.add(className_NAME_SHOW)
 
     const completeCallBack = () => {
       if (!this._config.scroll) {
@@ -142,7 +142,7 @@ class Offcanvas extends BaseComponent {
     this._focustrap.deactivate()
     this._element.blur()
     this._isShown = false
-    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._element.classNameList.remove(className_NAME_SHOW)
     this._backdrop.hide()
 
     const completeCallback = () => {
@@ -181,7 +181,7 @@ class Offcanvas extends BaseComponent {
 
   _initializeBackDrop() {
     return new Backdrop({
-      className: CLASS_NAME_BACKDROP,
+      className: className_NAME_BACKDROP,
       isVisible: this._config.backdrop,
       isAnimated: true,
       rootElement: this._element.parentNode,

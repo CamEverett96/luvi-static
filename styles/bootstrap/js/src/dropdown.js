@@ -52,11 +52,11 @@ const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY}${DATA_API_KEY}`
 const EVENT_KEYUP_DATA_API = `keyup${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_SHOW = 'show'
-const CLASS_NAME_DROPUP = 'dropup'
-const CLASS_NAME_DROPEND = 'dropend'
-const CLASS_NAME_DROPSTART = 'dropstart'
-const CLASS_NAME_NAVBAR = 'navbar'
+const className_NAME_SHOW = 'show'
+const className_NAME_DROPUP = 'dropup'
+const className_NAME_DROPEND = 'dropend'
+const className_NAME_DROPSTART = 'dropstart'
+const className_NAME_NAVBAR = 'navbar'
 
 const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="dropdown"]'
 const SELECTOR_MENU = '.dropdown-menu'
@@ -90,11 +90,11 @@ const DefaultType = {
 
 /**
  * ------------------------------------------------------------------------
- * Class Definition
+ * className Definition
  * ------------------------------------------------------------------------
  */
 
-class Dropdown extends BaseComponent {
+className Dropdown extends BaseComponent {
   constructor(element, config) {
     super(element)
 
@@ -160,8 +160,8 @@ class Dropdown extends BaseComponent {
     this._element.focus()
     this._element.setAttribute('aria-expanded', true)
 
-    this._menu.classList.add(CLASS_NAME_SHOW)
-    this._element.classList.add(CLASS_NAME_SHOW)
+    this._menu.classNameList.add(className_NAME_SHOW)
+    this._element.classNameList.add(className_NAME_SHOW)
     EventHandler.trigger(this._element, EVENT_SHOWN, relatedTarget)
   }
 
@@ -211,8 +211,8 @@ class Dropdown extends BaseComponent {
       this._popper.destroy()
     }
 
-    this._menu.classList.remove(CLASS_NAME_SHOW)
-    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._menu.classNameList.remove(className_NAME_SHOW)
+    this._element.classNameList.remove(className_NAME_SHOW)
     this._element.setAttribute('aria-expanded', 'false')
     Manipulator.removeDataAttribute(this._menu, 'popper')
     EventHandler.trigger(this._element, EVENT_HIDDEN, relatedTarget)
@@ -263,7 +263,7 @@ class Dropdown extends BaseComponent {
   }
 
   _isShown(element = this._element) {
-    return element.classList.contains(CLASS_NAME_SHOW)
+    return element.classNameList.contains(className_NAME_SHOW)
   }
 
   _getMenuElement() {
@@ -273,18 +273,18 @@ class Dropdown extends BaseComponent {
   _getPlacement() {
     const parentDropdown = this._element.parentNode
 
-    if (parentDropdown.classList.contains(CLASS_NAME_DROPEND)) {
+    if (parentDropdown.classNameList.contains(className_NAME_DROPEND)) {
       return PLACEMENT_RIGHT
     }
 
-    if (parentDropdown.classList.contains(CLASS_NAME_DROPSTART)) {
+    if (parentDropdown.classNameList.contains(className_NAME_DROPSTART)) {
       return PLACEMENT_LEFT
     }
 
     // We need to trim the value because custom properties can also include spaces
     const isEnd = getComputedStyle(this._menu).getPropertyValue('--bs-position').trim() === 'end'
 
-    if (parentDropdown.classList.contains(CLASS_NAME_DROPUP)) {
+    if (parentDropdown.classNameList.contains(className_NAME_DROPUP)) {
       return isEnd ? PLACEMENT_TOPEND : PLACEMENT_TOP
     }
 
@@ -292,7 +292,7 @@ class Dropdown extends BaseComponent {
   }
 
   _detectNavbar() {
-    return this._element.closest(`.${CLASS_NAME_NAVBAR}`) !== null
+    return this._element.closest(`.${className_NAME_NAVBAR}`) !== null
   }
 
   _getOffset() {
@@ -436,7 +436,7 @@ class Dropdown extends BaseComponent {
       return
     }
 
-    const isActive = this.classList.contains(CLASS_NAME_SHOW)
+    const isActive = this.classNameList.contains(className_NAME_SHOW)
 
     if (!isActive && event.key === ESCAPE_KEY) {
       return

@@ -12,7 +12,7 @@ import { isElement } from './index'
 const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top'
 const SELECTOR_STICKY_CONTENT = '.sticky-top'
 
-class ScrollBarHelper {
+className ScrollBarHelper {
   constructor() {
     this._element = document.body
   }

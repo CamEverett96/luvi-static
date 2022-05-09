@@ -58,10 +58,10 @@ const EVENT_MOUSEUP_DISMISS = `mouseup.dismiss${EVENT_KEY}`
 const EVENT_MOUSEDOWN_DISMISS = `mousedown.dismiss${EVENT_KEY}`
 const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_OPEN = 'modal-open'
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
-const CLASS_NAME_STATIC = 'modal-static'
+const className_NAME_OPEN = 'modal-open'
+const className_NAME_FADE = 'fade'
+const className_NAME_SHOW = 'show'
+const className_NAME_STATIC = 'modal-static'
 
 const OPEN_SELECTOR = '.modal.show'
 const SELECTOR_DIALOG = '.modal-dialog'
@@ -70,11 +70,11 @@ const SELECTOR_DATA_TOGGLE = '[data-bs-toggle="modal"]'
 
 /**
  * ------------------------------------------------------------------------
- * Class Definition
+ * className Definition
  * ------------------------------------------------------------------------
  */
 
-class Modal extends BaseComponent {
+className Modal extends BaseComponent {
   constructor(element, config) {
     super(element)
 
@@ -125,7 +125,7 @@ class Modal extends BaseComponent {
 
     this._scrollBar.hide()
 
-    document.body.classList.add(CLASS_NAME_OPEN)
+    document.body.classNameList.add(className_NAME_OPEN)
 
     this._adjustDialog()
 
@@ -166,7 +166,7 @@ class Modal extends BaseComponent {
 
     this._focustrap.deactivate()
 
-    this._element.classList.remove(CLASS_NAME_SHOW)
+    this._element.classNameList.remove(className_NAME_SHOW)
 
     EventHandler.off(this._element, EVENT_CLICK_DISMISS)
     EventHandler.off(this._dialog, EVENT_MOUSEDOWN_DISMISS)
@@ -235,7 +235,7 @@ class Modal extends BaseComponent {
       reflow(this._element)
     }
 
-    this._element.classList.add(CLASS_NAME_SHOW)
+    this._element.classNameList.add(className_NAME_SHOW)
 
     const transitionComplete = () => {
       if (this._config.focus) {
@@ -281,7 +281,7 @@ class Modal extends BaseComponent {
     this._element.removeAttribute('role')
     this._isTransitioning = false
     this._backdrop.hide(() => {
-      document.body.classList.remove(CLASS_NAME_OPEN)
+      document.body.classNameList.remove(className_NAME_OPEN)
       this._resetAdjustments()
       this._scrollBar.reset()
       EventHandler.trigger(this._element, EVENT_HIDDEN)
@@ -310,7 +310,7 @@ class Modal extends BaseComponent {
   }
 
   _isAnimated() {
-    return this._element.classList.contains(CLASS_NAME_FADE)
+    return this._element.classNameList.contains(className_NAME_FADE)
   }
 
   _triggerBackdropTransition() {
@@ -319,11 +319,11 @@ class Modal extends BaseComponent {
       return
     }
 
-    const { classList, scrollHeight, style } = this._element
+    const { classNameList, scrollHeight, style } = this._element
     const isModalOverflowing = scrollHeight > document.documentElement.clientHeight
 
     // return if the following background transition hasn't yet completed
-    if ((!isModalOverflowing && style.overflowY === 'hidden') || classList.contains(CLASS_NAME_STATIC)) {
+    if ((!isModalOverflowing && style.overflowY === 'hidden') || classNameList.contains(className_NAME_STATIC)) {
       return
     }
 
@@ -331,9 +331,9 @@ class Modal extends BaseComponent {
       style.overflowY = 'hidden'
     }
 
-    classList.add(CLASS_NAME_STATIC)
+    classNameList.add(className_NAME_STATIC)
     this._queueCallback(() => {
-      classList.remove(CLASS_NAME_STATIC)
+      classNameList.remove(className_NAME_STATIC)
       if (!isModalOverflowing) {
         this._queueCallback(() => {
           style.overflowY = ''

@@ -24,12 +24,12 @@ const DefaultType = {
   clickCallback: '(function|null)'
 }
 const NAME = 'backdrop'
-const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
+const className_NAME_FADE = 'fade'
+const className_NAME_SHOW = 'show'
 
 const EVENT_MOUSEDOWN = `mousedown.bs.${NAME}`
 
-class Backdrop {
+className Backdrop {
   constructor(config) {
     this._config = this._getConfig(config)
     this._isAppended = false
@@ -48,7 +48,7 @@ class Backdrop {
       reflow(this._getElement())
     }
 
-    this._getElement().classList.add(CLASS_NAME_SHOW)
+    this._getElement().classNameList.add(className_NAME_SHOW)
 
     this._emulateAnimation(() => {
       execute(callback)
@@ -61,7 +61,7 @@ class Backdrop {
       return
     }
 
-    this._getElement().classList.remove(CLASS_NAME_SHOW)
+    this._getElement().classNameList.remove(className_NAME_SHOW)
 
     this._emulateAnimation(() => {
       this.dispose()
@@ -76,7 +76,7 @@ class Backdrop {
       const backdrop = document.createElement('div')
       backdrop.className = this._config.className
       if (this._config.isAnimated) {
-        backdrop.classList.add(CLASS_NAME_FADE)
+        backdrop.classNameList.add(className_NAME_FADE)
       }
 
       this._element = backdrop
